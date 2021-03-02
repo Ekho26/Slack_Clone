@@ -39,11 +39,12 @@ export default App;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: orange;
   display: grid;
   grid-template-rows: 38px auto;
 `
 
 const Main = styled.div`
   background: blue;
+  display: grid;
+  grid-template-columns: 260px auto;
 `
