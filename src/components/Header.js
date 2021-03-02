@@ -33,13 +33,14 @@ function Header() {
 export default Header
 
 const Container = styled.div`
- background: #350d36;
- color: white;
- display: flex;
- align-items: center;
- justify-content: center;
- position: relative;
-`
+  background: #350d36;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgb(104 74 104);
+`;
 
 const Main = styled.div`
   display: flex;
