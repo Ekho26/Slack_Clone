@@ -37,15 +37,18 @@ const Container = styled.div`
  color: white;
  display: flex;
  align-items: center;
- justify-content: space-between;
+ justify-content: center;
+ position: relative;
 `
 
 const Main = styled.div`
   display: flex;
+  margin: 0 16px;
 `
 
 const SearchContainer = styled.div`
     min-width: 400px;
+    margin: 0 16px;
 `
 
 const Search = styled.div`
@@ -71,12 +74,22 @@ const UserContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 0 20px 0 0;
+  position: absolute;
+  right: 0;
 `
 
 const Name = styled.div`
-
+    padding: 0 16px 0 0;
 `
 
 const UserImage = styled.div`
+    width: 28px;
+    height: 28px;
+    border: 2px solid white;
+    border-radius: 3px;
 
+    /* img {
+        width: 28px;
+        height: 100%;
+    } */
 `
