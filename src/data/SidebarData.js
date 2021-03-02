@@ -2,7 +2,7 @@
 import MessageIcon from '@material-ui/icons/Message';
 import InboxIcon from "@material-ui/icons/Inbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
-import TurnedInNotIcon from "@material-ui/icons/TurnedInNot";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorderIcon";
 import GroupIcon from "@material-ui/icons/Group";
 import AppsIcon from "@material-ui/icons/Apps";
 
@@ -10,26 +10,26 @@ import AppsIcon from "@material-ui/icons/Apps";
 export const sidebarItems = [
   {
     icon: <MessageIcon />,
-    text: "Thread",
+    text: "Thread"
   },
   {
     icon: <InboxIcon />,
-    text: "All DMs",
+    text: "All DMs"
   },
   {
     icon: <DraftsIcon />,
-    text: "Mentions & Reactions",
+    text: "Mentions & Reactions"
   },
   {
-    icon: <TurnedInNotIcon />,
-    text: "Save Items",
+    icon: <BookmarkBorderIcon />,
+    text: "Save Items"
   },
   {
     icon: <GroupIcon />,
-    text: "Peoples & Groups",
+    text: "Peoples & Groups"
   },
   {
     icon: <AppsIcon />,
-    text: "More",
-  },
+    text: "More"
+  }
 ];
