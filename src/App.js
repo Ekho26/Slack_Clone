@@ -1,8 +1,14 @@
+// Hooks
+import { useEffect, useState } from 'react';
+
 // Components
 import Chat from './components/Chat';
 import Login from './components/Login';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+
+// Firebase
+import db from './firebase';
 
 // Styles
 import "./App.css";
@@ -12,13 +18,28 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
+
+  const [rooms, setRooms] = useState([]);
+
+  const getChannels = () => {
+    db.collection('rooms').onSnapshot((snapshot) => {
+      setRooms(snapshot.docs.map((doc) => {
+        return { id: doc.id, name: doc.data().name }
+      }))
+    })
+  }
+
+  useEffect(() => {
+    getChannels();
+  }, [])
+
   return (
     <div className="App">
       <Router>
         <Container>
           <Header />
           <Main>
-            <Sidebar />
+            <Sidebar rooms={rooms} />
             <Switch>
               <Route path="/room">
                 <Chat />

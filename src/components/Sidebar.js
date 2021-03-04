@@ -9,8 +9,9 @@ import styled from 'styled-components';
 // Icons
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
+import { PeopleSharp } from '@material-ui/icons';
 
-function Sidebar() {
+function Sidebar(props) {
     return (
       <Container>
         <WorkspaceContainer>
@@ -33,12 +34,11 @@ function Sidebar() {
             <AddIcon />
           </NewChannelContainer>
           <ChannelList>
-            <Channel>
-                # Channel
-            </Channel>
-            <Channel>
-                # Channel
-            </Channel>
+
+            {props.rooms.map(item => (
+              <Channel># { item.name }</Channel>
+            ))}
+            
           </ChannelList>
         </ChannelsContainer>
       </Container>
