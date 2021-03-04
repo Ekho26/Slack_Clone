@@ -50,5 +50,21 @@ const InputContainer = styled.div`
 `;
 
 const SendButton = styled.div`
+  background: #007a5a;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
-`
+    .MuiSvgIcon-root {
+        width: 18px;
+        color: #D9D9D9;
+    }
+
+    :hover {
+        background: #148567;
+    }
+`;

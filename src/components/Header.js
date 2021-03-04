@@ -63,6 +63,7 @@ const Search = styled.div`
     align-items: center;
 
     input {
+        flex: 1;
         color: white;
         background-color: transparent;
         border: none;

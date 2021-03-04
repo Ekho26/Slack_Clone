@@ -6,6 +6,7 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 
 // Components
 import ChatInput from './ChatInput';
+import ChatMessage from './ChatMessage';
 
 function Chat() {
     return (
@@ -16,7 +17,7 @@ function Chat() {
                 # Ionut
               </ChannelName>
               <ChannelInfo>
-                Company-wide announcements and work-based matters
+                Informations about the channel
               </ChannelInfo>
             </Channel>
             <ChannelDetails>
@@ -26,7 +27,7 @@ function Chat() {
               <Info />
             </ChannelDetails>
         </Header>
-        <MessageContainer></MessageContainer>
+        <ChatMessage />
         <ChatInput />
       </Container>
     );
@@ -72,9 +73,4 @@ const ChannelDetails = styled.div`
 
 const Info = styled(InfoOutlinedIcon)`
   margin: 0 0 0 10px;
-`
-
-// Chat Area
-const MessageContainer = styled.div`
-
 `;
