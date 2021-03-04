@@ -1,52 +1,59 @@
-import React from 'react'
+import React from "react";
 
 // Data
-import { sidebarItems } from '../data/SidebarData'
+import { sidebarItems } from "../data/SidebarData";
+import db from "../firebase";
 
 // Styles
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // Icons
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
-import { PeopleSharp } from '@material-ui/icons';
 
 function Sidebar(props) {
-    return (
-      <Container>
-        <WorkspaceContainer>
-          <Name>Munteanu Ionut</Name>
-          <NewMessage>
-            <AddCircleOutlineIcon />
-          </NewMessage>
-        </WorkspaceContainer>
-        <MainChannels>
-          {sidebarItems.map((item) => (
-            <MainChannelItem>
-              {item.icon}
-              {item.text}
-            </MainChannelItem>
-          ))}
-        </MainChannels>
-        <ChannelsContainer>
-          <NewChannelContainer>
-            <div>Channels</div>
-            <AddIcon />
-          </NewChannelContainer>
-          <ChannelList>
 
-            {props.rooms.map(item => (
-              <Channel># { item.name }</Channel>
-            ))}
-            
-          </ChannelList>
-        </ChannelsContainer>
-      </Container>
-    );
+  const addChannel = () => {
+      const promptName = prompt("Enter channel name");
+      if(promptName) {
+          db.collection('rooms').add({
+              name: promptName
+          })
+      }
+  };
+
+  return (
+    <Container>
+      <WorkspaceContainer>
+        <Name>Munteanu Ionut</Name>
+        <NewMessage>
+          <AddCircleOutlineIcon />
+        </NewMessage>
+      </WorkspaceContainer>
+      <MainChannels>
+        {sidebarItems.map((item) => (
+          <MainChannelItem>
+            {item.icon}
+            {item.text}
+          </MainChannelItem>
+        ))}
+      </MainChannels>
+      <ChannelsContainer>
+        <NewChannelContainer>
+          <div>Channels</div>
+          <AddIcon onClick={addChannel} />
+        </NewChannelContainer>
+        <ChannelList>
+          {props.rooms.map((item) => (
+            <Channel># {item.name}</Channel>
+          ))}
+        </ChannelList>
+      </ChannelsContainer>
+    </Container>
+  );
 }
 
-export default Sidebar
-
+export default Sidebar;
 
 const Container = styled.div`
   color: white;
@@ -54,17 +61,15 @@ const Container = styled.div`
 `;
 
 const WorkspaceContainer = styled.div`
-    height: 64px;
-    display: flex;
-    align-items: center;
-    padding: 0 0 0 19px;
-    justify-content: space-between;
-    border-bottom: 1px solid #532753;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 19px;
+  justify-content: space-between;
+  border-bottom: 1px solid #532753;
 `;
 
-const Name = styled.div`
-
-`;
+const Name = styled.div``;
 
 const NewMessage = styled.div`
   display: flex;
@@ -81,7 +86,7 @@ const NewMessage = styled.div`
 `;
 
 const MainChannels = styled.div`
-    padding: 20px 0 0 0;
+  padding: 20px 0 0 0;
 `;
 
 const MainChannelItem = styled.div`
@@ -103,22 +108,22 @@ const ChannelsContainer = styled.div`
 `;
 
 const NewChannelContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 28px;
-    padding: 0 25px 0 19px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  padding: 0 25px 0 19px;
 `;
 
-const ChannelList = styled.div``
+const ChannelList = styled.div``;
 
 const Channel = styled.div`
-    height: 28px;
-    display: flex;
-    align-items: center;
-    padding-left: 19px;
-    cursor: pointer;
-    :hover{
-        background: #350D36;
-    }
-`
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding-left: 19px;
+  cursor: pointer;
+  :hover {
+    background: #350d36;
+  }
+`;
