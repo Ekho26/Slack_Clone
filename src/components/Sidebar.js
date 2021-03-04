@@ -60,6 +60,7 @@ const Container = styled.div`
   background: #3f0e40;
 `;
 
+// Header of sidebar
 const WorkspaceContainer = styled.div`
   height: 64px;
   display: flex;
@@ -85,6 +86,7 @@ const NewMessage = styled.div`
   cursor: pointer;
 `;
 
+// Predefined options and channels
 const MainChannels = styled.div`
   padding: 20px 0 0 0;
 `;
@@ -102,6 +104,7 @@ const MainChannelItem = styled.div`
   }
 `;
 
+// New channels container
 const ChannelsContainer = styled.div`
   color: rgb(188, 171, 188);
   margin: 10px 0 0 0;

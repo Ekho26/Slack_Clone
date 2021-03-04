@@ -57,15 +57,15 @@ function App() {
 
 export default App;
 
+// Container of all
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-rows: 38px auto;
 `
-
+// Sidebar (options) + Chat room
 const Main = styled.div`
-  background: #3f0e40;
   display: grid;
   grid-template-columns: 260px auto;
 `;

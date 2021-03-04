@@ -44,6 +44,7 @@ const Container = styled.div`
   box-shadow: inset 0 0 0 1px rgb(104 74 104);
 `;
 
+// Main = clock + inputSearch + questionMark
 const Main = styled.div`
   display: flex;
   margin: 0 16px;
@@ -73,6 +74,7 @@ const Search = styled.div`
     }
 `
 
+// UserInfo
 const UserContainer = styled.div`
   display: flex;
   align-items: center;
