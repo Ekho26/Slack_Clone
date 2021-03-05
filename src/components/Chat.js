@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Styles
 import styled from "styled-components";
@@ -8,13 +8,37 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import ChatInput from './ChatInput';
 import ChatMessage from './ChatMessage';
 
+// Database
+import db from '../firebase';
+import { useParams } from 'react-router';
+
 function Chat() {
+
+  const [ channel, setChannel] = useState();
+
+  let { channelId } = useParams();
+
+  const getChannels = () => {
+    db.collection('rooms')
+      .doc(channelId)
+      .onSnapshot((snapshot) => {
+        // console.log(snapshot.data());
+        setChannel(snapshot.data());
+      })
+  }
+
+  useEffect(() => {
+    getChannels();
+  }, [channelId])
+
+  getChannels();
+
     return (
       <Container>
         <Header>
             <Channel>
               <ChannelName>
-                # Ionut
+                # {channel.name}
               </ChannelName>
               <ChannelInfo>
                 Informations about the channel
