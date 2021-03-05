@@ -20,7 +20,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 function App() {
 
   const [rooms, setRooms] = useState([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const getChannels = () => {
     db.collection('rooms').onSnapshot((snapshot) => {
