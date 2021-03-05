@@ -77,7 +77,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 38px auto;
+  grid-template-rows: 38px minmax(0, 1fr);
 `
 // Sidebar (options) + Chat room
 const Main = styled.div`

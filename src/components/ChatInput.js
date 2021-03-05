@@ -12,6 +12,7 @@ function ChatInput({sendMessage}) {
     e.preventDefault();
     if(!input) return;
     sendMessage(input);
+    setInput('');
   }
 
     return (
@@ -20,8 +21,9 @@ function ChatInput({sendMessage}) {
           <form>
             <input onChange={(e) => setInput(e.target.value)} 
                    type="text" 
+                   value={input}
                    placeholder="Message..." />
-            <SendButton onClick={send}>
+            <SendButton onClick={send} type="submit">
                 <SendIcon />
             </SendButton>
           </form>
@@ -60,7 +62,7 @@ const InputContainer = styled.div`
     }
 `;
 
-const SendButton = styled.div`
+const SendButton = styled.button`
   background: #007a5a;
   border-radius: 4px;
   width: 32px;
@@ -69,6 +71,7 @@ const SendButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: none;
 
     .MuiSvgIcon-root {
         width: 18px;
