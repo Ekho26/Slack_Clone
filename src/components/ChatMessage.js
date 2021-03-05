@@ -7,13 +7,16 @@ function ChatMessage() {
     return (
       <Container>
         <UserAvatar>
-          <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="Person" />
+          <img
+            src="https://randomuser.me/api/portraits/women/11.jpg"
+            alt="Person"
+          />
         </UserAvatar>
         <MessageContent>
-            <Name>
-              John
-              <span>Date</span>
-            </Name>
+          <Name>
+            Hailey Matthews
+            <span>Date</span>
+          </Name>
           <Text>Slack message</Text>
         </MessageContent>
       </Container>
@@ -25,7 +28,6 @@ export default ChatMessage;
 const Container = styled.div`
   padding: 8px 20px; /* top/bottom and right/left */
   display: flex;
-  align-items: center;
 //   height: 35px;
 //   width: 100%;
 //   border-radius: 5px;

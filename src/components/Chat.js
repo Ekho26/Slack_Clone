@@ -73,4 +73,4 @@ const ChannelDetails = styled.div`
 
 const Info = styled(InfoOutlinedIcon)`
   margin: 0 0 0 10px;
-`;
+`
