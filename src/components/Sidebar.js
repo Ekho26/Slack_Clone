@@ -1,5 +1,8 @@
 import React from "react";
 
+// Router
+import { useHistory } from 'react-router-dom';
+
 // Data
 import { sidebarItems } from "../data/SidebarData";
 import db from "../firebase";
@@ -21,6 +24,14 @@ function Sidebar(props) {
           })
       }
   };
+
+  const history = useHistory();
+
+  const goToChannel = (id) => {
+    if(id) {
+      history.push(`/room/${id}`)
+    }
+  }
 
   return (
     <Container>
@@ -45,7 +56,9 @@ function Sidebar(props) {
         </NewChannelContainer>
         <ChannelList>
           {props.rooms.map((item) => (
-            <Channel># {item.name}</Channel>
+            <Channel onClick= {() => goToChannel(item.id)}>
+              # {item.name}
+            </Channel>
           ))}
         </ChannelList>
       </ChannelsContainer>

@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar';
 
 // Firebase
 import db from './firebase';
+import { auth, provider } from './firebase';
 
 // Styles
 import "./App.css";
@@ -30,6 +31,13 @@ function App() {
     })
   }
 
+  const signOut = () => {
+    auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      setUser(null);
+    })
+  }
+
   useEffect(() => {
     getChannels();
   }, [])
@@ -42,12 +50,16 @@ function App() {
           <Login setUser={ setUser }/>
           :
           <Container>
-            <Header user= { user }/>
+            <Header user= { user }
+                    signOut={ signOut }/>
             <Main>
               <Sidebar rooms={rooms} />
               <Switch>
-                <Route path="/room">
+                <Route path="/room/:channelId">
                   <Chat />
+                </Route>
+                <Route path="/">
+                  Create or Select a Channel
                 </Route>
               </Switch>
             </Main>
