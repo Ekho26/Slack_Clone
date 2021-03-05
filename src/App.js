@@ -39,18 +39,15 @@ function App() {
       <Router>
         {
           !user ?
-          <Login />
+          <Login setUser={ setUser }/>
           :
           <Container>
-            <Header />
+            <Header user= { user }/>
             <Main>
               <Sidebar rooms={rooms} />
               <Switch>
                 <Route path="/room">
                   <Chat />
-                </Route>
-                <Route path="/">
-                  <Login />
                 </Route>
               </Switch>
             </Main>

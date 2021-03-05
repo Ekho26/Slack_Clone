@@ -6,12 +6,16 @@ import styled from 'styled-components';
 // Authentication
 import { auth, provider} from '../firebase';
 
-function Login() {
+function Login(props) {
 
   const signIn = () => {
     auth.signInWithPopup(provider)
     .then((result) => {
-
+      const newUser ={
+        name: result.user.displayName,
+        photo: result.user.photoURL
+      }
+      props.setUser(newUser);
     })
     .catch((error) => {
       alert(error.message)

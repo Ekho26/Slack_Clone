@@ -6,9 +6,8 @@ import styled from 'styled-components';
 // Icons
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
-function Header() {
+function Header({ user }) {
     return (
         <Container>
             <Main>
@@ -22,10 +21,10 @@ function Header() {
             </Main>
             <UserContainer>
                 <Name>
-                    Munteanu
+                    {user.name}
                 </Name>
                 <UserImage>
-                    <AccountBoxIcon />
+                    <img src={ user.photo ? user.photo : 'https://i.imgur.com/6VBx3io.png'} />
                 </UserImage>
             </UserContainer>
         </Container>
