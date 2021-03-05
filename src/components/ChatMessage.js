@@ -28,14 +28,11 @@ export default ChatMessage;
 const Container = styled.div`
   padding: 8px 20px; /* top/bottom and right/left */
   display: flex;
-//   height: 35px;
-//   width: 100%;
-//   border-radius: 5px;
-//   padding: 5px;
+  align-items: center;
 
-//   :hover {
-//     background: #f5f3f2;
-//   }
+  :hover {
+    background: #f5f3f2;
+  }
 `;
 
 // Users Avatars

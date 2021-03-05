@@ -27,7 +27,9 @@ function Chat() {
               <Info />
             </ChannelDetails>
         </Header>
-        <ChatMessage />
+        <MessageContainer>
+          <ChatMessage />
+        </MessageContainer>
         <ChatInput />
       </Container>
     );
@@ -39,6 +41,7 @@ export default Chat
 const Container = styled.div`
   display: grid;
   grid-template-rows: 64px auto min-content;
+  min-height: 0;
 `;
 
 // Header
@@ -74,3 +77,10 @@ const ChannelDetails = styled.div`
 const Info = styled(InfoOutlinedIcon)`
   margin: 0 0 0 10px;
 `
+
+// Messages area
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+`;
