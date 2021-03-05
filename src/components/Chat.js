@@ -11,74 +11,94 @@ import ChatMessage from './ChatMessage';
 // Database
 import db from '../firebase';
 import { useParams } from 'react-router';
+import firebase from 'firebase';
 
-function Chat() {
-
-  const [ channel, setChannel] = useState();
-
+function Chat({ user }) {
   let { channelId } = useParams();
+  const [channel, setChannel] = useState();
+  const [messages, setMessages] = useState([]);
 
-  const getChannels = () => {
-    db.collection('rooms')
+  const getMessages = () => {
+    db.collection("rooms")
+      .doc(channelId)
+      .collection("messages")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((snapshot) => {
+        let messages = snapshot.docs.map((doc) => doc.data());
+        setMessages(messages);
+      });
+  };
+
+  const sendMessage = (text) => {
+    if (channelId) {
+      let payload = {
+        text: text,
+        timestamp: firebase.firestore.Timestamp.now(),
+        user: user.name,
+        userImage: user.photo
+      };
+      // console.log(payload);
+      db.collection("rooms").doc(channelId).collection("messages").add(payload);
+    }
+  };
+
+  const getChannel = () => {
+    db.collection("rooms")
       .doc(channelId)
       .onSnapshot((snapshot) => {
-        // console.log(snapshot.data());
         setChannel(snapshot.data());
-      })
-  }
+      });
+  };
 
   useEffect(() => {
-    getChannels();
-  }, [channelId])
+    getChannel();
+    getMessages();
+  }, [channelId]);
 
-  getChannels();
-
-    return (
-      <Container>
-        <Header>
-            <Channel>
-              <ChannelName>
-                # {channel.name}
-              </ChannelName>
-              <ChannelInfo>
-                Informations about the channel
-              </ChannelInfo>
-            </Channel>
-            <ChannelDetails>
-              <div>
-                Details
-              </div>
-              <Info />
-            </ChannelDetails>
-        </Header>
-        <MessageContainer>
-          <ChatMessage />
-        </MessageContainer>
-        <ChatInput />
-      </Container>
-    );
+  return (
+    <Container>
+      <Header>
+        <Channel>
+          <ChannelName># {channel && channel.name}</ChannelName>
+          <ChannelInfo>
+            Company-wide announcements and work-based matters
+          </ChannelInfo>
+        </Channel>
+        <ChannelDetails>
+          <div>Details</div>
+          <Info />
+        </ChannelDetails>
+      </Header>
+      <MessageContainer>
+        {messages.length > 0 &&
+          messages.map((data, index) => (
+            <ChatMessage
+              text={data.text}
+              name={data.user}
+              image={data.userImage}
+              timestamp={data.timestamp}
+            />
+          ))}
+      </MessageContainer>
+      <ChatInput sendMessage={sendMessage} />
+    </Container>
+  );
 }
 
-export default Chat
+export default Chat;
 
-// Container
 const Container = styled.div`
   display: grid;
   grid-template-rows: 64px auto min-content;
   min-height: 0;
 `;
 
-// Header
-const Header = styled.div`
-  padding: 0 20px 0 20px;
+const Channel = styled.div``;
+
+const ChannelDetails = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(83, 39, 83, .13);
-`;
-
-const Channel = styled.div`
-
+  color: #606060;
 `;
 
 const ChannelName = styled.div`
@@ -92,17 +112,19 @@ const ChannelInfo = styled.div`
   margin-top: 8px;
 `;
 
-const ChannelDetails = styled.div`
-  display: flex;
-  align-items: center;
-  color: #606060;
+const Info = styled(InfoOutlinedIcon)`
+  margin-left: 10px;
 `;
 
-const Info = styled(InfoOutlinedIcon)`
-  margin: 0 0 0 10px;
-`
+const Header = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(83, 39, 83, 0.13);
+  justify-content: space-between;
+`;
 
-// Messages area
 const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;

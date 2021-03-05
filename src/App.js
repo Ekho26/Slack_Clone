@@ -56,7 +56,7 @@ function App() {
               <Sidebar rooms={rooms} />
               <Switch>
                 <Route path="/room/:channelId">
-                  <Chat />
+                  <Chat user={user}/>
                 </Route>
                 <Route path="/">
                   Create or Select a Channel
